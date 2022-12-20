@@ -20,6 +20,7 @@ app.post('/insert', (req, res) => {
     .then(data => res.json({ success: true, data }))
     .catch(err => console.log(err));
 })
+
 // READ
 app.get('/getAll', (req,res) => {
 
@@ -34,5 +35,14 @@ app.get('/getAll', (req,res) => {
 // UPDATE
 
 // DELETE
+app.delete('/delete/:id', (req,res) => {
+  const { id } = req.params;
+  const result = db.deleteRowById(id)
+
+  result
+    .then(data => res.json({ success: true }))
+    .catch(err => console.log(err));
+
+})
 
 app.listen(process.env.PORT, () => console.log('App is running'));
